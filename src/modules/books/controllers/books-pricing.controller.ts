@@ -16,6 +16,7 @@ import {
   calculatePriceQuerySchema,
   CalculatePriceQueryInput,
 } from '../schemas/calculate-price.schema';
+import { Public } from '../../../common/decorators/public.decorator';
 import { BooksService } from '../services/books.service';
 
 @ApiTags('Books')
@@ -24,6 +25,7 @@ export class BooksPricingController {
   constructor(private readonly booksService: BooksService) {}
 
   @Post(':id/calculate-price')
+  @Public()
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Calcular margen de ganancia en divisa local' })
   @ApiResponse({ status: 200, description: 'Cálculo de precio y actualización exitosa' })
