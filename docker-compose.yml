@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: bookstore-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bookstore
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d bookstore"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    container_name: bookstore-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/bookstore?schema=public"
+      JWT_SECRET: "${JWT_SECRET:-dev-secret-key-change-in-production}"
+      JWT_EXPIRES_IN: "${JWT_EXPIRES_IN:-24h}"
+      EXCHANGE_RATE_API_URL: "${EXCHANGE_RATE_API_URL:-https://api.exchangerate-api.com/v4/latest/USD}"
+      DEFAULT_CURRENCY: "${DEFAULT_CURRENCY:-EUR}"
+      DEFAULT_EXCHANGE_RATE: "${DEFAULT_EXCHANGE_RATE:-0.92}"
+      PROFIT_MARGIN_PERCENTAGE: "${PROFIT_MARGIN_PERCENTAGE:-40}"
+      PORT: "3000"
+      NODE_ENV: "production"
+
+volumes:
+  postgres_data:

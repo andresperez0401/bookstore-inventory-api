@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Book {
+  id                String   @id @default(uuid())
+  title             String
+  author            String
+  isbn              String   @unique
+  costUsd           Decimal  @map("cost_usd") @db.Decimal(10, 2)
+  sellingPriceLocal Decimal? @map("selling_price_local") @db.Decimal(10, 2)
+  stockQuantity     Int      @default(0) @map("stock_quantity")
+  category          String
+  supplierCountry   String   @map("supplier_country")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  @@map("books")
+}
