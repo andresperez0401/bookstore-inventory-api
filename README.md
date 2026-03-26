@@ -37,15 +37,24 @@ npm install
 Copy-Item .env.example .env
 ```
 
-Variables minimas:
-- DATABASE_URL
-- JWT_SECRET
-- JWT_EXPIRES_IN
-- EXCHANGE_RATE_API_URL
-- DEFAULT_CURRENCY
-- DEFAULT_EXCHANGE_RATE
-- PROFIT_MARGIN_PERCENTAGE
-- PORT
+Variables de entorno:
+
+# Database
+DATABASE_URL="postgresql://neondb_owner:npg_d3iUglI6eWtv@ep-long-rice-amvouu88-pooler.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+
+# JWT
+JWT_SECRET="dev-secret-key-change-in-production"
+JWT_EXPIRES_IN="24h"
+
+# Exchange Rate
+EXCHANGE_RATE_API_URL="https://api.exchangerate-api.com/v4/latest/USD"
+DEFAULT_CURRENCY="EUR"
+DEFAULT_EXCHANGE_RATE="0.92"
+PROFIT_MARGIN_PERCENTAGE="40"
+
+# App
+PORT=3000
+NODE_ENV="development"
 
 ## Prisma 7: nota importante
 
