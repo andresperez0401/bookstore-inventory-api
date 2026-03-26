@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
 import { ExecutionContext } from '@nestjs/common';
@@ -21,6 +21,18 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     }
 
     return super.canActivate(context);
+  }
+
+  handleRequest<TUser = unknown>(
+    err: unknown,
+    user: TUser,
+    info?: { message?: string },
+  ): TUser {
+    if (err || !user) {
+      throw new UnauthorizedException(info?.message || 'Unauthorized');
+    }
+
+    return user;
   }
 }
 

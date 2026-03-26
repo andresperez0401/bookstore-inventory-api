@@ -43,7 +43,7 @@ Variables de entorno:
 DATABASE_URL="postgresql://neondb_owner:npg_d3iUglI6eWtv@ep-long-rice-amvouu88-pooler.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 
 # JWT
-JWT_SECRET="dev-secret-key-change-in-production"
+JWT_SECRET="secretkey"
 JWT_EXPIRES_IN="24h"
 
 # Exchange Rate
