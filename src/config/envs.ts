@@ -7,7 +7,7 @@ export const appConfig = registerAs('app', () => ({
 
 export const jwtConfig = registerAs('jwt', () => ({
   secret: process.env.JWT_SECRET || 'dev-secret-key',
-  expiresIn: process.env.JWT_EXPIRES_IN || '24h',
+  expiresIn: process.env.JWT_EXPIRES_IN || '72h',
 }));
 
 export const exchangeRateConfig = registerAs('exchangeRate', () => ({
