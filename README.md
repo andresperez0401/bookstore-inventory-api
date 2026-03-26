@@ -6,6 +6,8 @@ API REST para inventario de libros con NestJS, Prisma 7, PostgreSQL, JWT y Zod.
 
 1) https://bookstore-inventory-api-fhbh.onrender.com
 
+(Puede que tarde aprox 1-2 min la primera vez que se consulta, ya que es un servicio que se duermre por inactividad)
+
 ## Stack
 
 - NestJS 11
@@ -28,7 +30,7 @@ API REST para inventario de libros con NestJS, Prisma 7, PostgreSQL, JWT y Zod.
 ```powershell
 npm install
 ```
-
+¿¿¿¿¿¿
 3. Crear variables de entorno a partir de [.env.example](.env.example).
 
 ```powershell
