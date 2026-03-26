@@ -4,7 +4,7 @@ API REST para inventario de libros con NestJS, Prisma 7, PostgreSQL, JWT y Zod.
 
 ## URL del despliegue de la aplicacion
 
-https://bookstore-inventory-api-production.up.railway.app
+1) https://bookstore-inventory-api-fhbh.onrender.com
 
 ## Stack
 
