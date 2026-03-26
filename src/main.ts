@@ -23,7 +23,7 @@ async function bootstrap() {
   // CORS
   app.enableCors();
 
-  // Swagger
+  // Swagger docs
   const config = new DocumentBuilder()
     .setTitle('Bookstore Inventory API')
     .setDescription('API REST for bookstore inventory management with real-time price calculation')
