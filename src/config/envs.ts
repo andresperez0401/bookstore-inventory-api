@@ -1,3 +1,10 @@
+function normalizeJwtSecret(rawSecret?: string): string {
+  if (!rawSecret) {
+    return 'secretkey';
+  }
+
+  return rawSecret.trim().replace(/^['\"]|['\"]$/g, '');
+}
 import { registerAs } from '@nestjs/config';
 
 export const appConfig = registerAs('app', () => ({
@@ -6,7 +13,7 @@ export const appConfig = registerAs('app', () => ({
 }));
 
 export const jwtConfig = registerAs('jwt', () => ({
-  secret: process.env.JWT_SECRET || 'secretkey',
+  secret: normalizeJwtSecret(process.env.JWT_SECRET),
   expiresIn: process.env.JWT_EXPIRES_IN || '24h',
 }));
 
